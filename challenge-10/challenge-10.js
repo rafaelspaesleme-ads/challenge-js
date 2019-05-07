@@ -63,14 +63,16 @@ var resultaTudo = (function tudo() {
     operador passado para a função "calculator", e passando para esse método
     os dois parâmetros da função de retorno de "calculator".
     */
-    (function calculator(operador) {
+    function calculator(operador) {
+        var result;
         return isOperatorValid(operador) == false ? false
             : function calculando(v1, v2) {
-                (v1 != Number) || (v2 |= Number) ? false
-                    : (operation)[operador](v1, v2);
-                    return v1,v2;
+                (typeof v1 === 'number') || (typeof v2 === 'number')
+                    ? result = this.operation[operador](v1, v2)
+                    : result = false;
+                return result;
             }
-    })("+")(5,2);
+    };
 
     /*
     Crie uma função chamada "showOperationMessage" que recebe três parâmetros:
@@ -79,7 +81,10 @@ var resultaTudo = (function tudo() {
     'A operação [NUMBER1] [OPERATOR] [NUMBER2] =';
     Essa função mostrará a mensagem da operação que criaremos mais abaixo.
     */
-
+    function showOperationMessage(operador, numero1, numero2) {
+        var resultado = calculator(operador)(numero1, numero2)
+        return 'A operação ' + numero1 + ' ' + operador + ' ' + numero2 + ' = ' + resultado;
+    }
 
     /*
     Crie uma função chamada "showErrorMessage" que recebe um parâmetro: o
@@ -87,7 +92,13 @@ var resultaTudo = (function tudo() {
     Essa função deverá retornar a frase:
     'Operação "[OPERATOR]" não permitida!'
     */
-
+    function showErrorMessage(operador) {
+        return !isOperatorValid(operador)
+            ? 'Operação ' + operador + ' não permitida!'
+            : function chamaFuncaoCalculo(v1,v2){
+                return showOperationMessage(operador, v1, v2);
+            }
+    }
 
     /*
     Nossa calculadora está pronta! Agora vamos testá-la:
@@ -95,7 +106,7 @@ var resultaTudo = (function tudo() {
     - Declare 3 variáveis: "number1" e "number2", iniciando com valor zero, e
     "operationSignal", sem valor por enquanto.
     */
-
+    var number01 = 0, number02 = 0, operationSignal;
 
     /*
     PASSO 2:
@@ -103,7 +114,8 @@ var resultaTudo = (function tudo() {
     variável chamada "sum", que receba a função "calculator", passando por
     parâmetro a variável que recebeu o sinal da operação.
     */
-
+    operationSignal = '+';
+    var sum = calculator(operationSignal);
 
     /*
     PASSO 3:
@@ -117,18 +129,24 @@ var resultaTudo = (function tudo() {
     - O segundo, a função de soma, passando os dois operandos.
     - Se "sum" for "false", mostrar no console a mensagem de erro.
     */
-
+    number01 = 10, number02 = 5;
+    var msgResultado = sum(number01, number02);
+    console.log(msgResultado);
 
     /*
     Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
     divisão e resto. Crie variáveis com os nomes "subtraction",
     "multiplication", "division" e "mod".
     */
-
+   operationSignal = '-';
+   operationSignal = '*';
+   operationSignal = '/';
+   operationSignal = '%';
 
     /*
     Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
     a mensagem de erro será mostrada no console.
     */
+   operationSignal = 'x';
 
 })(); 
