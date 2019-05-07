@@ -26,7 +26,7 @@ console.log(person);
 /*
 Crie um array vazio chamado `books`.
 */
-
+var books = [];
 
 /*
 Adicione nesse array 3 objetos, que serão 3 livros. Cada livro deve ter a
@@ -34,31 +34,37 @@ seguintes propriedades:
 `name`: String
 `pages`: Number
 */
+books.push(
+    livro1 = {name: String, pages: Number},
+    livro2 = {name: String, pages: Number},
+    livro3 = {name: String, pages: Number}
+)
+books[0].name = 'A volta dos que não foram';
+books[0].pages = 6000;
 
-console.log( '\nLista de livros:' );
+books[1].name = 'História sem fim';
+books[1].pages = Number.POSITIVE_INFINITY;
 
-/*
-Mostre no console todos os livros.
-*/
+books[2].name = 'De volta para lugar nenhum';
+books[2].pages = 50;
 
+console.log( '\nLista de livros:'+books.sort());
 
-console.log( '\nLivro que está sendo removido:' );
 /*
 Remova o último livro, e mostre-o no console.
 */
+delete books[2];
 
-
-console.log( '\nAgora sobraram somente os livros:' );
+console.log( '\nAgora sobraram somente os livros:'+books);
 /*
 Mostre no console os livros restantes.
 */
 
-
 /*
 Converta os objetos que ficaram em `books` para strings.
 */
-
-console.log( '\nLivros em formato string:' );
+books = {pages: String}
+console.log( '\nLivros em formato string:' + typeof books[0].pages === String);
 
 /*
 Mostre os livros nesse formato no console:
